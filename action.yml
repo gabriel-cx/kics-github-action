@@ -87,6 +87,9 @@ inputs:
   bom:
     description: "include bill of materials (BoM) in results output"
     required: false
+  build_args:
+    description: "we can specify the kics version to run on the github action"
+    required: false
 branding:
   icon: "shield"
   color: "green"
@@ -124,3 +127,4 @@ runs:
     - ${{ inputs.disable_full_descriptions }}
     - ${{ inputs.libraries_path }}
     - ${{ inputs.secrets_regexes_path}}
+    - ${{ inputs.build_args}}
