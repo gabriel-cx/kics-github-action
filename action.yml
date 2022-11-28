@@ -101,13 +101,8 @@ inputs:
   bom:
     description: "include bill of materials (BoM) in results output"
     required: false
-<<<<<<< HEAD
-  build_args:
-    description: "we can specify the kics version to run on the github action"
-=======
   cloud_provider:
     description: "list of cloud providers to scan (alicloud, aws, azure, gcp)"
->>>>>>> e466aa42a6ee8b43e034faf44c80b7cfc2d41574
     required: false
 branding:
   icon: "shield"
