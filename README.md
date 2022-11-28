@@ -1,4 +1,4 @@
-# KICS Github Action
+# KICS GitHub Action
 
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL3.0-yellow.svg)](https://www.gnu.org/licenses)
 [![Latest Release](https://img.shields.io/github/v/release/checkmarx/kics-github-action)](https://github.com/checkmarx/kics-github-action/releases)
@@ -6,7 +6,7 @@
 
 - [KICS Github Action](#kics-github-action)
   - [Integrate KICS into your GitHub workflows](#integrate-kics-into-your-github-workflows)
-      - [Supported Platforms](#supported-platforms)
+    - [Supported Platforms](#supported-platforms)
     - [Please find more info in the official website: <a href="https://kics.io">kics.io</a>](#please-find-more-info-in-the-official-website-kicsio)
   - [Inputs](#inputs)
   - [Simple usage example](#simple-usage-example)
@@ -33,27 +33,49 @@ It is as simple as running a CLI tool, making it easy to integrate into any proj
 
 #### Supported Platforms
 
-<img alt="Terraform" src="images/logo-terraform.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Terraform" src="images/logo-terraform.png" width="100" >&nbsp;&nbsp;&nbsp;
 <img alt="Kubernetes" src="images/logo-k8s.png" width="150">&nbsp;&nbsp;&nbsp;
 <img alt="Docker" src="images/logo-docker.png" width="150">&nbsp;&nbsp;&nbsp;
 <br>
+<br>
 <img alt="CloudFormation" src="images/logo-cf.png" width="150">&nbsp;&nbsp;&nbsp;
 <img alt="Ansible" src="images/logo-ansible.png" width="150">&nbsp;&nbsp;&nbsp;
-<img alt="OpenAPI" src="images/logo-openapi.png" width="150">&nbsp;&nbsp;&nbsp;
-<br>
-<br>
 <img alt="Helm" src="images/logo-helm.png" width="150">&nbsp;&nbsp;&nbsp;
+<br>
+<br>
+<img alt="OpenAPI" src="images/logo-openapi.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="gRPC" src="images/logo-grpc.png" width="120">&nbsp;&nbsp;&nbsp;
+<img alt="Azure Resource Manager" src="images/logo-arm.png" width="55">&nbsp;&nbsp;&nbsp;
+<img alt="Google Deployment Manager" src="images/logo-gdm.png" width="55">&nbsp;&nbsp;&nbsp;
+<br>
+<br>
+<img alt="Cloud Deployment Kit" src="images/logo-cdk.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="SAM" src="images/logo-sam.png" width="55">&nbsp;&nbsp;&nbsp;
+<img alt="Docker Compose" src="images/logo-dockercompose.png" width="80">&nbsp;&nbsp;&nbsp;
+<img alt="Knative" src="images/logo-knative.png" width="80">&nbsp;&nbsp;&nbsp;
+<br>
+<br>
+<img alt="Crossplane" src="images/logo-crossplane.png" width="150">&nbsp;&nbsp;&nbsp;
+<img alt="Pulumi" src="images/logo-pulumi.png" width="130">&nbsp;&nbsp;&nbsp;
+<img alt="ServerlessFW" src="images/logo-serverlessfw.png" width="150">&nbsp;&nbsp;&nbsp;
+<br>
+<br>
+<img alt="Azure BluePrints" src="images/logo-azure-blueprints.png" width="100">&nbsp;&nbsp;&nbsp;
 
 
 ### Please find more info in the official website: <a href="https://kics.io">kics.io</a>
 
 And official documentation page <a href="https://docs.kics.io">docs.kics.io</a>
 
+And ensure that you're using the <a href="https://github.com/Checkmarx/kics-github-action/releases">latest KICS Github Action release</a> when creating a workflow.
+
 ## Inputs
 
 | Variable                                  | Example Value &nbsp;                                   | Description &nbsp;                                                                                                                                          | Type    | Required | Default                                                |
 |-------------------------------------------|--------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|---------| -------- |--------------------------------------------------------|
 | enable_comment                            | true                                                   | Enable pull request report comments                                                                                                                         | Boolean | No       | false                                                  |
+| enable_jobs_summary                       | true                                                   | Enable report as jobs summary                                                                                                                               | Boolean | No       | false                                                  |
+| enable_annotations                        | true                                                   | Enable annotations  report                                                                                                                                  | Boolean | No       | true                                                   |
 | comments_with_queries                     | true                                                   | Add queries in th pull request report comments (available when enable_comments = true)                                                                      | Boolean | No       | false                                                  |
 | excluded_column_for_comments_with_queries | description_id,similarity_id,search_line,search_value  | Excluded columns for the comment with queries, accepts a comma separated list                                                                               | String  | No       | description_id,similarity_id,search_line,search_value  |
 | path                                      | terraform/main.tf,Dockerfile                           | paths to a file or directories to scan, comma separated list                                                                                                | String  | Yes      | N/A                                                    |
@@ -67,6 +89,8 @@ And official documentation page <a href="https://docs.kics.io">docs.kics.io</a>
 | exclude_queries                           | a227ec01-f97a-4084-91a4-47b350c1db54                   | exclude queries by providing the query ID, comma separated list                                                                                             | String  | No       | N/A                                                    |
 | exclude_categories                        | 'Observability,Networking and Firewall'                | exclude categories by providing its name, comma separated list                                                                                              | String  | No       | N/A                                                    |
 | exclude_results                           | 'd4a1fa80-d9d8-450f-87c2-e1f6669c41f8'                 | exclude results by providing the similarity ID of a result                                                                                                  | String  | No       | N/A                                                    |
+| exclude_severities                        | 'info,low'                                             | exclude results by providing the severity of a result                                                                                                       | String  | No       | N/A                                                    |
+| exclude_gitignore (available only from KICS version 1.6)                        |                                                        | disables the exclusion of paths specified within .gitignore file                                                                                             | Boolean  | No       | false                                                    |
 | include_queries                           | a227ec01-f97a-4084-91a4-47b350c1db54                   | include only specified list of queries to the scan, cannot be provided with query exclusion flags                                                           | String  | No       | N/A                                                    |
 | output_formats                            | 'json,sarif'                                           | formats in which the results report will be exported                                                                                                        | String  | No       | json                                                   |
 | output_path                               | myResults/                                             | file path to store result in json format                                                                                                                    | String  | No       | "./"                                                   |
@@ -79,6 +103,7 @@ And official documentation page <a href="https://docs.kics.io">docs.kics.io</a>
 | disable_secrets                           | false                                                  | disable secrets detection                                                                                                                                   | Boolean | false    |
 | secrets_regexes_path                      | ./mydir/secrets-config.json                            | path to custom secrets regex rules configuration file                                                                                                       | String  | No       | N/A                                                    |
 | libraries_path                            | ./myLibsDir                                            | path to directory with Rego libraries                                                                                                                       | String  | No       | N/A                                                    |
+| cloud_provider                            | aws,azure                                            | list of cloud providers to scan (alicloud, aws, azure, gcp)                                                                                                                       | String  | No       | N/A                                                    |
 
 
 ## Simple usage example
@@ -87,10 +112,10 @@ And official documentation page <a href="https://docs.kics.io">docs.kics.io</a>
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     # Scan Iac with kics
     - name: run kics Scan
-      uses: checkmarx/kics-github-action@v1.3
+      uses: checkmarx/kics-github-action@v1.6
       with:
         # scanning two directories: ./terraform/ ./cfn-templates/ plus a single file
         path: 'terraform,cfn-templates,my-other-sub-folder/Dockerfile'
@@ -111,9 +136,9 @@ If you want KICS to ignore the results and return exit status code 0 unless a KI
 
 ```yaml
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: run kics Scan
-      uses: checkmarx/kics-github-action@v1.3
+      uses: checkmarx/kics-github-action@v1.6
       with:
         path: 'terraform'
         ignore_on_exit: results
@@ -129,9 +154,9 @@ If want your pipeline just to fail on HIGH and MEDIUM severity results and KICS 
 
 ```yaml
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: run kics Scan
-      uses: checkmarx/kics-github-action@v1.3
+      uses: checkmarx/kics-github-action@v1.6
       with:
         path: 'terraform,my-other-sub-folder/Dockerfile'
         fail_on: high,medium
@@ -155,9 +180,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: run kics Scan
-      uses: checkmarx/kics-github-action@v1.3
+      uses: checkmarx/kics-github-action@v1.6
         with:
           path: test/samples/positive1.tf,test/samples/positive2.tf
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -169,9 +194,9 @@ jobs:
 ### PR Comment Example
 
 
-<img alt="KICS Logo" src="https://user-images.githubusercontent.com/74597872/143567454-f65ad285-00d8-4875-845d-568d2e67d868.png" width="150">
+<img alt="KICS Logo" src="https://user-images.githubusercontent.com/111127232/203838108-ad537fea-4573-495a-9619-18500ee81dd9.png">
 
-**KICS version: 1.4.8**
+**KICS version: 1.6.0**
 
 <table>
 <tr></tr>
@@ -214,16 +239,16 @@ You can only enable one profiler at a time, CPU or MEM.
 
 ```yaml
     steps:
-    - uses: actions/checkout@v2
-    - name: run kics Scan
-      uses: checkmarx/kics-github-action@v1.3
-      with:
-        path: 'terraform'
-        profiling: MEM
-        output_path: myResults/
-    - name: display kics results
-      run: |
-        cat myResults/results.json
+      - uses: actions/checkout@v3
+      - name: run kics Scan
+        uses: checkmarx/kics-github-action@v1.6
+        with:
+          path: 'terraform'
+          profiling: MEM
+          output_path: myResults/
+      - name: display kics results
+        run: |
+          cat myResults/results.json
 ```
 
 ## Uploading SARIF report
@@ -242,12 +267,12 @@ jobs:
     name: kics-action
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Mkdir results-dir
         # make sure results dir is created
         run: mkdir -p results-dir
       - name: Run KICS Scan with SARIF result
-        uses: checkmarx/kics-github-action@v1.3
+        uses: checkmarx/kics-github-action@v1.6
         with:
           path: 'terraform'
           # when provided with a directory on output_path
@@ -288,7 +313,7 @@ jobs:
     name: kics-action
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Mkdir results-dir
         # make sure results dir is created
         run: mkdir -p results-dir
@@ -312,7 +337,7 @@ jobs:
           }
           EOF
       - name: Run KICS Scan using config
-        uses: checkmarx/kics-github-action@v1.2
+        uses: checkmarx/kics-github-action@v1.6
         with:
           path: 'terraform'
           config_path: ./kics.config

@@ -1,6 +1,4 @@
-ARG KICS_IMAGE=checkmarx/kics:gh-action
-
-FROM $KICS_IMAGE
+FROM checkmarx/kics:gh-action-kics1.6
 
 COPY ./entrypoint.sh /entrypoint.sh
 
