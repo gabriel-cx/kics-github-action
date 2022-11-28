@@ -73,15 +73,15 @@ async function main() {
         }
 
         const parsedResults = readJSON(outputPath.resultsJSONFile);
-        if (enableAnnotations.toLocaleLowerCase() === "true") {
+        /*if (enableAnnotations.toLocaleLowerCase() === "true") {
             annotator.annotateChangesWithResults(parsedResults);
-        }
+        }*/
         if (enableComments.toLocaleLowerCase() === "true") {
             await commenter.postPRComment(parsedResults, repo, prNumber, octokit, commentsWithQueries.toLocaleLowerCase() === "true", excludedColumnsForCommentsWithQueries);
         }
-        if (enableJobsSummary.toLocaleLowerCase() === "true") {
+        /*if (enableJobsSummary.toLocaleLowerCase() === "true") {
             await commenter.postJobSummary(parsedResults, commentsWithQueries.toLocaleLowerCase() === "true", excludedColumnsForCommentsWithQueries);
-        }
+        }*/
 
         setWorkflowStatus(exitCode);
         cleanupOutput(outputPath.resultsJSONFile, outputFormats);
