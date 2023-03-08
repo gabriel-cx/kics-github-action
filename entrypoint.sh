@@ -88,5 +88,5 @@ cd /app
 # install and run nodejs
 apk add --update nodejs npm
 npm ci
-npm run --quiet build --if-present
+npm run build --if-present --silent
 node dist/index.js
