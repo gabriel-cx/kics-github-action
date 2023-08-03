@@ -1,4 +1,4 @@
-FROM checkmarx/kics:v1.7.5
+FROM checkmarx/kics:v1.7.4
 
 COPY ./entrypoint.sh /entrypoint.sh
 
