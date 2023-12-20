@@ -61,13 +61,18 @@ It is as simple as running a CLI tool, making it easy to integrate into any proj
 <br>
 <br>
 <img alt="Azure BluePrints" src="images/logo-azure-blueprints.png" width="100">&nbsp;&nbsp;&nbsp;
+<img alt="GitHub Workflows" src="images/logo-github-icon.png" width="100">&nbsp;&nbsp;&nbsp;
+<img alt="OpenTofu" src="images/logo-opentofu.png" width="150">&nbsp;&nbsp;&nbsp;
 
+#### Beta Features
+<img alt="Databricks" src="images/logo-databricks.png" width="200">&nbsp;&nbsp;&nbsp;
+<img alt="NIFCloud" src="images/logo-nifcloud.png" width="110">&nbsp;&nbsp;&nbsp;
 
-### Please find more info in the official website: <a href="https://kics.io">kics.io</a>
+In order to run the Databricks and NIFCloud queries, use the `--experimental-queries` flag when running KICS.
 
-And official documentation page <a href="https://docs.kics.io">docs.kics.io</a>
+Official documentation page <a href="https://docs.kics.io">docs.kics.io</a>
 
-And ensure that you're using the <a href="https://github.com/Checkmarx/kics-github-action/releases">latest KICS Github Action release</a> when creating a workflow.
+Ensure that you're using the <a href="https://github.com/Checkmarx/kics-github-action/releases">latest KICS Github Action release</a> when creating a workflow.
 
 ## Inputs
 
