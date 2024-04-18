@@ -87,6 +87,6 @@ cp -r "${CP_PATH}" "/app/"
 cd /app
 
 # install and run nodejs
-yarn install --frozen-lockfile
-yarn run build --if-present
+npm ci
+npm run build --if-present
 node dist/index.js
