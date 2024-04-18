@@ -1,14 +1,12 @@
 FROM checkmarx/kics:v2.0.0 as kics-env
  
-COPY ./entrypoint.sh /entrypoint.sh
- 
-RUN chmod +x /entrypoint.sh
- 
-FROM cgr.dev/chainguard/node:latest
+FROM cgr.dev/chainguard/wolfi-base:latest
  
 COPY --from=kics-env /app /app
  
-COPY --from=kics-env /entrypoint.sh /entrypoint.sh
+COPY ./entrypoint.sh /entrypoint.sh
+ 
+RUN chmod +x /entrypoint.sh
  
 COPY ./ /app
  
